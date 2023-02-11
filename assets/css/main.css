@@ -3160,85 +3160,15 @@ code {
 	font-size: 95%;
 	}
 
-	/*@media screen and (max-width: 1800px) {
-
-		code {
-
-		font-family: Consolas,"courier new";
-		color: rgb(40, 20, 220);
-		background-color: #f1f1f1;
-		margin-left: 60px;
-		margin-right: 60px;
-		padding: 2px;
-		font-size: 90%;
-		}
-	}
-
-	@media screen and (max-width: 1280px) {
-
-		code {
-
-		font-family: Consolas,"courier new";
-		color: rgb(40, 20, 220);
-		background-color: #f1f1f1;
-		margin-left: 50px;
-		margin-right: 50px;
-		padding: 2px;
-		font-size: 85%;
-		}
-	}
-
-	@media screen and (max-width: 980px) {
-
-		code {
-
-		font-family: Consolas,"courier new";
-		color: rgb(40, 20, 220);
-		background-color: #f1f1f1;
-		margin-left: 40px;
-		margin-right: 40px;
-		padding: 2px;
-		font-size: 70%;
-		}
-	}
-
-	@media screen and (max-width: 736px) {
-
-		code {
-
-		font-family: Consolas,"courier new";
-		color: rgb(40, 20, 220);
-		background-color: #f1f1f1;
-		margin-left: 20px;
-		margin-right: 20px;
-		padding: 2px;
-		font-size: 70%;
-		}
-	}
-
-	@media screen and (max-width: 480px) {
-
-		code {
-
-		font-family: Consolas,"courier new";
-		color: rgb(40, 20, 220);
-		background-color: #f1f1f1;
-		margin-left: 10px;
-		margin-right: 10px;
-		padding: 2px;
-		font-size: 70%;
-		}
-	}
 /* arrow */
 @media screen and (max-width: 980px) {
 	.arrow {
 		width: 60px;
 		height: 82px;
-		position: absolute; /* don't forget set container to relative */
-		left: 49%;
+		position: center;
 		margin-left: 0px;
 		bottom: 5%;
-	z-index:999;
+		z-index:999;
 	}
 	/* set arrow styles */
 	.arrow path {
