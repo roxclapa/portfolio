@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frames exercise</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <div class="inner">
+        <ul class="actions">
+            <li><a href="/index.html"> < Go back</a></li>
+        </ul>
+        <br/><br/>
+        <h1><strong>Frames exercise</strong></h1>
+    </div>
+</header>
+<div id="main">   
+        <pre>
+            <code>
+package teme.automation_course4;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import teme.util.ta_utils.BaseTestClass;
+                
+/**
+* @author Roxana
+*/
+                
+public class FramesExercise extends BaseTestClass {
+                
+@Before
+public void getOnWebPage() {
+    driver.get("https://demo.automationtesting.in/Frames.html");
+}
+                
+@Test
+public void single_iFrame()  {
+    driver.switchTo().frame("singleframe");
+    WebElement textInput = driver.findElement(By.cssSelector("[class='col-xs-6 col-xs-offset-5'] input"));
+    textInput.sendKeys("Roxana testeaza");
+    driver.switchTo().defaultContent();
+    driver.findElement(By.cssSelector("[href='#Multiple']")).click();
+    driver.findElement(By.cssSelector("[href='#Single']")).click();
+    driver.switchTo().frame("singleframe");
+                
+    Assert.assertEquals("Roxana testeaza", textInput.getAttribute("value"));
+    driver.switchTo().defaultContent();
+    }
+                
+    @Test
+    public void nested_iFrame() {
+        driver.findElement(By.cssSelector("[href='#Multiple']")).click();
+        driver.switchTo().frame(1);
+        driver.switchTo().frame(0);
+        WebElement textInput = driver.findElement(By.cssSelector("[class='col-xs-6 col-xs-offset-5'] input"));
+        textInput.sendKeys("Roxana testeaza");
+        driver.switchTo().parentFrame(); // <- just for fun
+        driver.switchTo().defaultContent();
+        driver.findElement(By.cssSelector("[href='#Single']")).click();
+        driver.findElement(By.cssSelector("[href='#Multiple']")).click();
+        driver.switchTo().frame(1);
+        driver.switchTo().frame(0);
+                
+        Assert.assertEquals("Roxana testeaza", textInput.getAttribute("value"));
+        driver.switchTo().defaultContent();
+    }
+}
+            </code>
+        </pre>
+    </div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts exercises</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <div class="inner">
+        <ul class="actions">
+            <li><a href="/index.html"> < Go back</a></li>
+        </ul>
+        <br/><br/>
+        <h1><strong>Alerts exercises</strong></h1>
+    </div>
+</header>
+<div id="main">   
+        <pre>
+            <code>
+package teme.automation_course4;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import teme.util.ta_utils.BaseTestClass;
+
+/**
+ * @author Roxana
+ */
+
+public class AlertsPracticeExercises extends BaseTestClass {
+    
+    public String yourName = "Roxana";
+
+    @Before
+    public void openAlertDemoURL() {
+        driver.get("https://demo.automationtesting.in/Alerts.html");
+    }
+
+    @Test
+    public void acceptTheAlertWillShow() {
+        driver.findElement(By.xpath("//*[@href='#CancelTab']")).click();
+        driver.findElement(By.cssSelector(".btn-primary")).click();
+        driver.switchTo().alert().accept();
+
+        Assert.assertEquals( "You pressed Ok", driver.findElement(By.id("demo")).getText());
+    }
+
+    @Test
+    public void dismissTheAlertWillShow() {
+        driver.findElement(By.xpath("//*[@href='#CancelTab']")).click();
+        driver.findElement(By.xpath("//*[@id='CancelTab']/button")).click();
+        driver.switchTo().alert().dismiss();
+
+        Assert.assertEquals("You Pressed Cancel", driver.findElement(By.id("demo")).getText());
+    }
+
+    @Test
+    public void getTextFromAlertWithOKAndCancelIsAsExpected() {
+        driver.findElement(By.xpath("//*[@href='#CancelTab']")).click();
+        driver.findElement(By.xpath("//*[@id='CancelTab']/button")).click();
+        String alertMessage = driver.switchTo().alert().getText();
+
+        Assert.assertEquals("The alert message is not correct", "Press a Button !", alertMessage);
+    }
+
+    @Test
+    public void getTextFromAlertWithTextboxIsAsExpected() {
+        driver.findElement(By.xpath("//*[@href='#Textbox']")).click();
+        driver.findElement(By.cssSelector(".btn-info")).click();
+        String alertMessage = driver.switchTo().alert().getText();
+
+        Assert.assertEquals("The alert message is not correct", "Please enter your name", alertMessage);
+    }
+
+    @Test
+    public void sendKeysToTheAlertWillShowTextName() {
+        driver.findElement(By.xpath("//*[@href='#Textbox']")).click();
+        driver.findElement(By.cssSelector(".btn-info")).click();
+        driver.switchTo().alert().sendKeys(yourName);
+        driver.switchTo().alert().accept();
+
+        Assert.assertEquals("Hello Roxana How are you today", driver.findElement(By.id("demo1")).getText());
+    }
+}
+            </code>
+        </pre>
+    </div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
