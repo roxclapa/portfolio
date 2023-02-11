@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration test</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <div class="inner">
+        <ul class="actions">
+            <li><a href="/index.html"> < Go back</a></li>
+        </ul>
+        <br/><br/>
+        <h1><strong>Registration test</strong></h1>
+    </div>
+</header>
+<div id="main">   
+        <pre>
+            <code>
+package teme.automation_course2;
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import teme.util.ta_utils.BaseTestClass;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+
+/**
+* @author Roxana
+*/
+
+public class TestingRegister extends BaseTestClass {
+    String numeRandom = randomAlphanumeric(7,21);
+
+    @Test
+    public void registerWithValidInputs(){
+        driver.get("https://testare-manuala.locdejoacapentruitsti.com/blog/register/");
+        driver.findElement(By.cssSelector("[id=username]")).sendKeys(numeRandom);
+        driver.findElement(By.cssSelector("[name=email]")).sendKeys(numeRandom + "@gmail.com");
+        driver.findElement(By.cssSelector("[id=passw1]")).sendKeys("Parolanounouta12");
+        driver.findElement(By.cssSelector("[id=passw2]")).sendKeys("Parolanounouta12");
+        driver.findElement(By.cssSelector("[name=register]")).submit();
+        String mesaj = driver.findElement(By.cssSelector("[id=wppb_form_success_message]")).getText();
+                    
+        Assert.assertEquals("The account " + numeRandom + " has been successfully created!", mesaj);
+    }
+}
+            </code>
+        </pre>
+    </div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
