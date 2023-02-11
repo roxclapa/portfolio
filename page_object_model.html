@@ -13,6 +13,11 @@
     <div class="inner">
         <ul class="actions">
             <li><a href="https://roxclapa.github.io/portfolio/"> < Go back</a></li>
+            <svg class="arrow">
+                <path class="a1" d="M0 0 L30 22 L60 0"></path>
+                <path class="a2" d="M0 20 L30 42 L60 20"></path>
+                <path class="a3" d="M0 40 L30 62 L60 40"></path>
+            </svg>
         </ul>
         <br/><br/>
         <h1><strong>Page object model</strong></h1>
@@ -22,173 +27,172 @@
         <h3>Pages</h3>
         <pre>
             <code>
-            package pages;
+package pages;
 
-            import org.openqa.selenium.By;
-            import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-            /**
-             * @author Roxana
-             *
-             * This class will store the locators and methods of common page elements.
-             *
-             */
+/**
+ * @author Roxana
+ *
+ * This class will store the locators and methods of common page elements.
+ *
+ */
 
-            public class Application {
-                private WebDriver driver;
-                public static By logoutButton = By.xpath("//*[@id='menu-item-126']/a");
-                public static By registerButton = By.xpath("//*[@id='menu-item-73']/a");
+ public class Application {
+    private WebDriver driver;
+    public static By logoutButton = By.xpath("//*[@id='menu-item-126']/a");
+    public static By registerButton = By.xpath("//*[@id='menu-item-73']/a");
                 
-                public Application(WebDriver driver) {
-                    this.driver = driver;
-                }
-                public LoginPage navigateToLoginPage() {
-                    driver.get(LoginPage.url);
+    public Application(WebDriver driver) {
+        this.driver = driver;
+    }
+    public LoginPage navigateToLoginPage() {
+        driver.get(LoginPage.url);
                 
-                    return new LoginPage(driver);
-                }
+        return new LoginPage(driver);
+    }
                 
-                public RegisterPage navigateToRegisterPage() {
-                    driver.get(RegisterPage.url);
+    public RegisterPage navigateToRegisterPage() {
+        driver.get(RegisterPage.url);
                 
-                    return new RegisterPage(driver);
-                }
+        return new RegisterPage(driver);
+    }
                 
-                public boolean isLogoutButtonDisplayed() {
-                    return driver.findElement(logoutButton).isDisplayed();
-                }
-            }
+    public boolean isLogoutButtonDisplayed() {
+         return driver.findElement(logoutButton).isDisplayed();
+    }
+}
             </code>
         </pre>
         <pre>
             <code>
-            package pages;
+ package pages;
 
-            import org.openqa.selenium.By;
-            import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.By;
+ import org.openqa.selenium.WebDriver;
 
-            /**
-            * @author Roxana
-            *
-            * This class will store the locators and methods of Login page.
-            *
-            */
+ /**
+  * @author Roxana
+  *
+  * This class will store the locators and methods of Login page.
+  *
+  */
             
-            public class LoginPage {
-                private WebDriver driver;
-                public static String url = "https://testare-manuala.locdejoacapentruitsti.com/blog/login/";
-                public static By usernameInput = By.cssSelector("[id='user_login']");
-                public static By passwordInput = By.cssSelector("[id='user_pass']");
-                public static By submitButton = By.name("wp-submit");
-                public static By errorMessage = By.cssSelector("[class='wppb-error']");
+ public class LoginPage {
+     private WebDriver driver;
+     public static String url = "https://testare-manuala.locdejoacapentruitsti.com/blog/login/";
+     public static By usernameInput = By.cssSelector("[id='user_login']");
+     public static By passwordInput = By.cssSelector("[id='user_pass']");
+     public static By submitButton = By.name("wp-submit");
+     public static By errorMessage = By.cssSelector("[class='wppb-error']");
 
-                public LoginPage(WebDriver driver) {
-                    this.driver = driver;
-                }
+     public LoginPage(WebDriver driver) {
+         this.driver = driver;
+     }
 
-                public void typeUsername(String username) {
-                    driver.findElement(usernameInput).sendKeys(username);
-                }
+     public void typeUsername(String username) {
+         driver.findElement(usernameInput).sendKeys(username);
+     }
 
-                public void typePassword(String password) {
-                    driver.findElement(passwordInput).sendKeys(password);
-                }
+     public void typePassword(String password) {
+         driver.findElement(passwordInput).sendKeys(password);
+     }
 
-                public void submit() {
-                    driver.findElement(submitButton).submit();
-                }
+     public void submit() {
+         driver.findElement(submitButton).submit();
+     }
 
-                public String errorMessage() {
-                    return driver.findElement(errorMessage).getText();
-                }
-
-            }
+     public String errorMessage() {
+         return driver.findElement(errorMessage).getText();
+     }
+}
             </code>
         </pre>
         <h3>Test cases</h3>
         <pre>
             <code>
-            package testCases;
+ package testCases;
 
-            import org.junit.Assert;
-            import org.junit.Test;
-            import pages.Application;
-            import pages.LoginPage;
-            import teme.util.ta_utils.BaseTestClass;
+ import org.junit.Assert;
+ import org.junit.Test;
+ import pages.Application;
+ import pages.LoginPage;
+ import teme.util.ta_utils.BaseTestClass;
                 
-            /**
-             * @author Roxana
-             *
-             * This class will store all the test cases to verify the login functionality.
-             *
-             */
+ /**
+  * @author Roxana
+  *
+  * This class will store all the test cases to verify the login functionality.
+  *
+  */
 
-            public class VerifyLoginFunctionality extends BaseTestClass {
-            // Test data
-            String validUsername = "Roxana1234";
-            String validPassword = "Pxb4dI6s9";
-            String invalidUsername = "Roxana123";
-            String invalidPassword = "Pxb4dI6s";
-            String invalidUsernameError = "ERROR: Invalid username or email. Lost your password?";
-            String emptyInputsError = "ERROR: The username or email field is empty.";
+ public class VerifyLoginFunctionality extends BaseTestClass {
+    // Test data
+    String validUsername = "Roxana1234";
+    String validPassword = "Pxb4dI6s9";
+    String invalidUsername = "Roxana123";
+    String invalidPassword = "Pxb4dI6s";
+    String invalidUsernameError = "ERROR: Invalid username or email. Lost your password?";
+    String emptyInputsError = "ERROR: The username or email field is empty.";
 
-            @Test
-            public void verifyUsingValidUsernameAndPasswordPositiveCase() {
-                LoginPage loginPage = new Application(driver).navigateToLoginPage();
+    @Test
+    public void verifyUsingValidUsernameAndPasswordPositiveCase() {
+        LoginPage loginPage = new Application(driver).navigateToLoginPage();
                 
-                loginPage.typeUsername(validUsername);
-                loginPage.typePassword(validPassword);
-                loginPage.submit();
+        loginPage.typeUsername(validUsername);
+        loginPage.typePassword(validPassword);
+        loginPage.submit();
                 
-                Assert.assertTrue(new Application(driver).isLogoutButtonDisplayed());
-            }
+        Assert.assertTrue(new Application(driver).isLogoutButtonDisplayed());
+    }
                 
-            @Test
-            public void verifyUsingValidUsernameAndInvalidPasswordNegativeCase() {
-                LoginPage loginPage = new Application(driver).navigateToLoginPage();
+    @Test
+    public void verifyUsingValidUsernameAndInvalidPasswordNegativeCase() {
+        LoginPage loginPage = new Application(driver).navigateToLoginPage();
                 
-                loginPage.typeUsername(validUsername);
-                loginPage.typePassword(invalidPassword);
-                loginPage.submit();
+        loginPage.typeUsername(validUsername);
+        loginPage.typePassword(invalidPassword);
+        loginPage.submit();
+               
+        String invalidPasswordError = "ERROR: The password you entered is incorrect. Lost your password?";
                 
-                String invalidPasswordError = "ERROR: The password you entered is incorrect. Lost your password?";
+        Assert.assertEquals(invalidPasswordError, new LoginPage(driver).errorMessage());
+    }
                 
-                Assert.assertEquals(invalidPasswordError, new LoginPage(driver).errorMessage());
-            }
+    @Test
+    public void verifyUsingInvalidUsernameAndValidPasswordNegativeCase() {
+        LoginPage loginPage = new Application(driver).navigateToLoginPage();
                 
-            @Test
-            public void verifyUsingInvalidUsernameAndValidPasswordNegativeCase() {
-                LoginPage loginPage = new Application(driver).navigateToLoginPage();
+        loginPage.typeUsername(invalidUsername);
+        loginPage.typePassword(validPassword);
+        loginPage.submit();
                 
-                loginPage.typeUsername(invalidUsername);
-                loginPage.typePassword(validPassword);
-                loginPage.submit();
+        Assert.assertEquals(invalidUsernameError, new LoginPage(driver).errorMessage());
+   }
                 
-                Assert.assertEquals(invalidUsernameError, new LoginPage(driver).errorMessage());
-            }
+   @Test
+   public void verifyUsingInvalidUsernameAndInvalidPasswordNegativeCase() {
+        LoginPage loginPage = new Application(driver).navigateToLoginPage();
                 
-            @Test
-            public void verifyUsingInvalidUsernameAndInvalidPasswordNegativeCase() {
-                LoginPage loginPage = new Application(driver).navigateToLoginPage();
+        loginPage.typeUsername(invalidUsername);
+        loginPage.typePassword(invalidPassword);
+        loginPage.submit();
                 
-                loginPage.typeUsername(invalidUsername);
-                loginPage.typePassword(invalidPassword);
-                loginPage.submit();
+        Assert.assertEquals(invalidUsernameError, new LoginPage(driver).errorMessage());
+  }
                 
-                Assert.assertEquals(invalidUsernameError, new LoginPage(driver).errorMessage());
-            }
+  @Test
+  public void verifyWithEmptyInputsNegativeCase() {
+        LoginPage loginPage = new Application(driver).navigateToLoginPage();
                 
-            @Test
-            public void verifyWithEmptyInputsNegativeCase() {
-                LoginPage loginPage = new Application(driver).navigateToLoginPage();
+        loginPage.typeUsername("");
+        loginPage.typePassword("");
+        loginPage.submit();
                 
-                loginPage.typeUsername("");
-                loginPage.typePassword("");
-                loginPage.submit();
-                
-                Assert.assertEquals(emptyInputsError, new LoginPage(driver).errorMessage());
-            }
-        }
+        Assert.assertEquals(emptyInputsError, new LoginPage(driver).errorMessage());
+  }
+}
             </code>
         </pre>
     </div>
