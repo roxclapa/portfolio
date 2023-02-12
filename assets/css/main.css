@@ -3167,6 +3167,7 @@ code {
 		height: 82px;
 		position: center;
 		margin: auto;
+		margin-top: 70%;
 		bottom: 5%;
 		z-index:999;
 	}
